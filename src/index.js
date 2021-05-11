@@ -3,17 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
+  // このconstructorが先に呼び出される
   constructor(props) {
     super(props);
     this.state = {
       value: null,
     };
   }
-  
+
   render() {
     return (
-      <button className="square" onClick={() => alert('hey')}>
-        {this.props.value}
+      <button
+        className="square"
+        onClick={() => this.setState({value: 'X'})}
+      >
+        {/* クリックしたときにクリックされたsquareのstateのvalueが'X'になる */}
+        {this.state.value}
+        {/* ここで実際にその状態がvalueに変わる */}
       </button>
     );
   }
