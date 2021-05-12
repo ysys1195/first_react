@@ -3,23 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
-  // このconstructorが先に呼び出される
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
-
+  // constructorの削除と処理の流れについてReact Tutorialの「Stateのリフトアップ」確認
   render() {
     return (
       <button
         className="square"
-        onClick={() => this.setState({value: 'X'})}
+        onClick={() => this.props.onClick()}
       >
-        {/* クリックしたときにクリックされたsquareのstateのvalueが'X'になる */}
-        {this.state.value}
-        {/* ここで実際にその状態がvalueに変わる */}
+        {this.props.value}
       </button>
     );
   }
@@ -32,6 +23,12 @@ class Board extends React.Component {
     this.state = {
       squares: Array(9).fill(null),
     };
+  }
+
+  handleClick(i) {
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares});
   }
 
   // valueプロパティの受け取り
