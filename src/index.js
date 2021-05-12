@@ -26,8 +26,16 @@ class Square extends React.Component {
 }
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    // ９個のマス目それぞれにnull値をセットする
+    this.state = {
+      squares: Array(9).fill(null),
+    };
+  }
+
   renderSquare(i) {
-    return <Square　value={i} />;
+    return <Square value={i} />;
   }
 
   render() {
