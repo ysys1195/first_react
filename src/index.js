@@ -34,8 +34,14 @@ class Board extends React.Component {
     };
   }
 
+  // valueプロパティの受け取り
   renderSquare(i) {
-    return <Square value={i} />;
+    return (
+      <Square
+        value={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {
